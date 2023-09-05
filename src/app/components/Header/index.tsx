@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { MapPin } from "@phosphor-icons/react";
-import Image from "next/image";
-import React from "react";
+import { MapPin } from '@phosphor-icons/react'
+import Image from 'next/image'
+import React from 'react'
 
 const Header: React.FC = () => {
   return (
-    <header className="flex justify-between container mx-auto">
+    <header className="flex justify-between container mx-auto pb-7 pt-2">
       <Image
         loading="eager"
         width={85}
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
