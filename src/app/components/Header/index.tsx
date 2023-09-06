@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin } from '@phosphor-icons/react'
+import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -14,12 +14,18 @@ const Header: React.FC = () => {
         src="/logo.png"
         alt="logo"
       />
-      <div className="flex">
-        <div>
-          <MapPin color="var(--purple)" size={32} weight="fill" />
+      <div className="flex gap-3">
+        <div className="flex items-center gap-1 px-2 w-143 bg-purple-100 rounded">
+          <div>
+            <MapPin color="var(--purple)" size={20} weight="fill" />
+          </div>
+          <div>
+            <span className="text-purple-300 text-sm">Rio de Janeiro, RJ</span>
+          </div>
         </div>
-        <div>
-          <span className="text-purple-200">Porto Alegre, RS</span>
+
+        <div className="flex items-center gap-1 px-2 w-143 bg-yellow-100 rounded">
+          <ShoppingCart color="var(--yellowdark)" size={20} weight="fill" />
         </div>
       </div>
     </header>

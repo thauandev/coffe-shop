@@ -9,8 +9,14 @@ const config: Config = {
   theme: {
     colors: {
       purple: {
-        100: '#8047f8',
-        200: '#4b2995'
+        100: '#EBE5F9',
+        200: '#8047f8',
+        300: '#4b2995'
+      },
+      yellow: {
+        100: '#F1E9C9',
+        200: '#DBAC2C',
+        300: '#C47F17'
       }
 
     }
