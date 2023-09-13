@@ -19,6 +19,12 @@ const config: Config = {
         300: '#C47F17'
       }
 
+    },
+    extend: {
+      fontFamily: {
+        display: ['var(--font-baloo-2)'],
+        regular: ['var(--font-roboto)']
+      }
     }
   },
   plugins: []

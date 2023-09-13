@@ -20,7 +20,9 @@ const Header: React.FC = () => {
             <MapPin color="var(--purple)" size={20} weight="fill" />
           </div>
           <div>
-            <span className="text-purple-300 text-sm">Rio de Janeiro, RJ</span>
+            <span className="text-purple-300 font-regular ">
+              Rio de Janeiro, RJ
+            </span>
           </div>
         </div>
 
