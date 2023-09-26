@@ -12,4 +12,6 @@
 body {
   color: var(--base-title);
   background: var(--background);
+  max-width: 1080px;
+  margin: 0 auto;
 }
