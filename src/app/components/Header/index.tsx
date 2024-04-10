@@ -1,37 +1,28 @@
+
 'use client'
 
-import { MapPin, ShoppingCart } from '@phosphor-icons/react'
-import Image from 'next/image'
-import React from 'react'
+import { ShoppingCart } from "@phosphor-icons/react";
+import Image from "next/image";
+
+
 
 const Header: React.FC = () => {
-  return (
-    <header className="flex justify-between container mx-auto pb-7 pt-2">
-      <Image
-        loading="eager"
-        width={85}
-        height={40}
-        src="/logo.png"
-        alt="logo"
-      />
-      <div className="flex gap-3">
-        <div className="flex items-center gap-1 px-2 w-143 bg-purple-100 rounded">
-          <div>
-            <MapPin color="var(--purple)" size={20} weight="fill" />
-          </div>
-          <div>
-            <span className="text-purple-300 font-regular ">
-              Rio de Janeiro, RJ
-            </span>
-          </div>
+  return(
+    <nav className="flex flex-row justify-between items-center px-6 py-4 gap-x-32">
+        
+        <div>
+            <Image src="/logo.png" alt="Logo" width={84} height={40} />
         </div>
 
-        <div className="flex items-center gap-1 px-2 w-143 bg-yellow-100 rounded">
-          <ShoppingCart color="var(--yellowdark)" size={20} weight="fill" />
+       
+        <div className="flex flex-row gap-x-8">
+            <div className="flex flex-row justify-center align-center rounded-md bg-yellow-100 p-2">
+            <ShoppingCart color="#c47f17" size={15} weight="fill" />
+            </div>
         </div>
-      </div>
-    </header>
+    </nav>
+
   )
 }
 
-export default Header
+export default Header;

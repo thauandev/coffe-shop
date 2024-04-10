@@ -50,6 +50,28 @@ const Home: React.FC = () => {
           </div>
         </div>
       </main>
+      <section className="w-full h-full ">
+        <h2 className="font-display font-bold text-2xl pt-20 mb-20">
+          Nossos cafés
+        </h2>
+        <div className="flex gap-5 mb-20">
+          <div className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 ">
+            <div className="absolute inset-0 flex justify-center -top-10">
+              <Image
+                alt="coffe"
+                src={'/coffee.png'}
+                width={100}
+                height={100}
+                className="w-20 h-20"
+              />
+            </div>
+            <div className="flex flex-col justify-center items-center w-full h-full">
+              <h3 className="font-display font-bold">Expresso Tradicional</h3>
+              <p>O tradicional café feito com água quente e grãos moídos</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
