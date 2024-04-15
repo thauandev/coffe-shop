@@ -1,6 +1,6 @@
 'use client'
 
-import { ShoppingCart } from '@phosphor-icons/react'
+import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
 
 const Home: React.FC = () => {
@@ -67,7 +67,26 @@ const Home: React.FC = () => {
             </div>
             <div className="flex flex-col justify-center items-center w-full h-full">
               <h3 className="font-display font-bold">Expresso Tradicional</h3>
-              <p>O tradicional café feito com água quente e grãos moídos</p>
+              <span className="font-regular text-sm text-gray-200 text-center">
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+
+              <div className="w-full justify-around items-center flex pt-5">
+                <div className="flex">
+                  <span>R$</span>
+                  <strong>9,90</strong>
+                </div>
+                <div className="flex gap-2 items-center">
+                  <div className="flex gap-2 items-center">
+                    <Plus />
+                    <span>1</span>
+                    <Minus />
+                  </div>
+                  <div>
+                    <ShoppingCart />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
