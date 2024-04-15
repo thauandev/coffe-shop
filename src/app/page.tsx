@@ -2,8 +2,36 @@
 
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const Home: React.FC = () => {
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      name: 'Expresso Tradicional',
+      description: 'O tradicional cafe feito com a leite quente e o espuma.',
+      price: 9.9,
+      amount: 0,
+      image: '/coffee.png',
+    },
+    {
+      id: 2,
+      name: 'Ristreto',
+      description: 'O tradicional cafe feito com a leite quente e o espuma.',
+      price: 9.9,
+      amount: 0,
+      image: '/coffee.png',
+    },
+
+    {
+      id: 3,
+      name: 'Lungo',
+      description: 'O tradicional cafe feito com a leite quente e o espuma.',
+      price: 9.9,
+      amount: 0,
+      image: '/coffee.png',
+    },
+  ])
   return (
     <div className="container mx-auto">
       <main className="flex w-full pt-16">
@@ -55,40 +83,45 @@ const Home: React.FC = () => {
           Nossos cafés
         </h2>
         <div className="flex gap-5 mb-20">
-          <div className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 ">
-            <div className="absolute inset-0 flex justify-center -top-10">
-              <Image
-                alt="coffe"
-                src={'/coffee.png'}
-                width={100}
-                height={100}
-                className="w-20 h-20"
-              />
-            </div>
-            <div className="flex flex-col justify-center items-center w-full h-full">
-              <h3 className="font-display font-bold">Expresso Tradicional</h3>
-              <span className="font-regular text-sm text-gray-200 text-center">
-                O tradicional café feito com água quente e grãos moídos
-              </span>
+          {items.map(item => (
+            <div
+              className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 "
+              key={item.id}
+            >
+              <div className="absolute inset-0 flex justify-center -top-10">
+                <Image
+                  alt="coffe"
+                  src={item.image}
+                  width={100}
+                  height={100}
+                  className="w-20 h-20"
+                />
+              </div>
+              <div className="flex flex-col justify-center items-center w-full h-full">
+                <h3 className="font-display font-bold">{item.name}</h3>
+                <span className="font-regular text-sm text-gray-200 text-center">
+                  {item.description}
+                </span>
 
-              <div className="w-full justify-around items-center flex pt-5">
-                <div className="flex">
-                  <span>R$</span>
-                  <strong>9,90</strong>
-                </div>
-                <div className="flex gap-2 items-center">
-                  <div className="flex gap-2 items-center">
-                    <Plus />
-                    <span>1</span>
-                    <Minus />
+                <div className="w-full justify-around items-center flex pt-5">
+                  <div className="flex gap-1">
+                    <span>R$</span>
+                    <strong>{item.price}</strong>
                   </div>
-                  <div>
-                    <ShoppingCart />
+                  <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center">
+                      <Plus />
+                      <span>1</span>
+                      <Minus />
+                    </div>
+                    <div>
+                      <ShoppingCart />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
