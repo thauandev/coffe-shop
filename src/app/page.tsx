@@ -78,7 +78,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </main>
-      <section className="w-full h-full ">
+      <section className="w-full h-full">
         <h2 className="font-display font-bold text-2xl pt-20 mb-20">
           Nossos cafés
         </h2>
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
               className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 "
               key={item.id}
             >
-              <div className="absolute inset-0 flex justify-center -top-10">
+              <div className="absolute inset-0 flex justify-center -top-10 h-7">
                 <Image
                   alt="coffe"
                   src={item.image}
@@ -110,9 +110,14 @@ const Home: React.FC = () => {
                   </div>
                   <div className="flex gap-2 items-center">
                     <div className="flex gap-2 items-center">
-                      <Plus />
-                      <span>1</span>
-                      <Minus />
+                      <button type="button" className="cursor-pointer">
+                        <Plus />
+                      </button>
+
+                      <span>{item.amount}</span>
+                      <button type="button" className="cursor-pointer">
+                        <Minus />
+                      </button>
                     </div>
                     <div>
                       <ShoppingCart />
