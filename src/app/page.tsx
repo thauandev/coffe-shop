@@ -2,7 +2,8 @@
 
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { CartContext } from './contexts/CartContext'
 
 const Home: React.FC = () => {
   const [items, setItems] = useState([
@@ -32,6 +33,39 @@ const Home: React.FC = () => {
       image: '/coffee.png',
     },
   ])
+
+  const { cart, addToCart } = useContext(CartContext)
+
+  useEffect(() => {
+    console.log(cart)
+  }, [cart])
+
+  function increment(id: number) {
+    const newItems = items.map(item => {
+      if (item.id === id) {
+        return { ...item, amount: item.amount + 1 }
+      }
+      return item
+    })
+
+    setItems(newItems)
+  }
+
+  function decrement(id: number) {
+    const newItems = items.map(item => {
+      if (item.id === id) {
+        return { ...item, amount: item.amount === 0 ? 0 : item.amount - 1 }
+      }
+      return item
+    })
+
+    setItems(newItems)
+  }
+
+  function add(item: any) {
+    addToCart(item)
+  }
+
   return (
     <div className="container mx-auto">
       <main className="flex w-full pt-16">
@@ -110,18 +144,30 @@ const Home: React.FC = () => {
                   </div>
                   <div className="flex gap-2 items-center">
                     <div className="flex gap-2 items-center">
-                      <button type="button" className="cursor-pointer">
+                      <button
+                        type="button"
+                        className="cursor-pointer"
+                        onClick={() => increment(item.id)}
+                      >
                         <Plus />
                       </button>
 
                       <span>{item.amount}</span>
-                      <button type="button" className="cursor-pointer">
+                      <button
+                        type="button"
+                        className="cursor-pointer"
+                        onClick={() => decrement(item.id)}
+                      >
                         <Minus />
                       </button>
                     </div>
-                    <div>
+                    <button
+                      type="button"
+                      className="cursor-pointer"
+                      onClick={() => add(item)}
+                    >
                       <ShoppingCart />
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>

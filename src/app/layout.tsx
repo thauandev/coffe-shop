@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Baloo_2, Roboto_Condensed } from 'next/font/google'
 import Header from './components/Header'
+import { CartProvider } from './contexts/CartContext'
 import './globals.css'
 
 interface RootLayoutProps {
@@ -27,8 +28,10 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="en" className={(roboto.variable, baloo.variable)}>
       <body>
-        <Header />
-        {children}
+        <CartProvider>
+          <Header />
+          {children}
+        </CartProvider>
       </body>
     </html>
   )
