@@ -1,43 +1,65 @@
 'use client'
 
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { createContext, useEffect, useState } from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
+import { Cart, cartReducer } from '../reducers/cart/reducer'
 
-export const CartContext = createContext({} as any)
+interface CartContextType {
+  cart: Cart[]
+  totalItems: number
+  addToCart: (product: Cart) => void
+}
+interface CartContextProviderProps {
+  children: ReactNode
+}
 
-export function CartProvider({ children }: any) {
-  const [cart, setCart] = useState([])
-  const storageVersion = '@cart:1.0.0'
+export const CartContext = createContext({} as CartContextType)
+
+export const storageVersion = '@cart:1.0.4'
+export function CartProvider({ children }: CartContextProviderProps) {
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    {
+      cart: [],
+    },
+    initialState => {
+      const storageStateAsJSON = localStorage.getItem(`${storageVersion}`)
+
+      if (storageStateAsJSON) {
+        return JSON?.parse(storageStateAsJSON)
+      }
+
+      return initialState
+    }
+  )
+
+  const { cart } = cartState
+
   // const total = cart.reduce((acc, cur) => acc + cur.value * cur.amount, 0)
-  const totalItems = cart.reduce((acc, cur) => acc + cur.amount, 0)
+  const totalItems = cart?.reduce((acc, cur) => acc + cur?.amount, 0)
 
-  // const [cartTotal, setCartTotal] = useState(total)
+  // const [cartTotal, setCartTotal] = us cart(total)
 
   // useEffect(() => {
   //   setCartTotal(total)
   // }, [cart])
 
-  useEffect(() => {
-    const cartStorage =
-      JSON.parse(localStorage.getItem(`${storageVersion}`)) || []
-    setCart(cartStorage)
-  }, [])
-
   const addToCart = (product: any) => {
-    const hasProduct = cart.find(p => p.id === product.id)
-    if (hasProduct) {
-      const newCart = cart.map((p): any => {
-        if (p.id === product.id) {
-          return { ...p, amount: p.amount + product.id }
-        }
-        return p
-      })
+    // const hasProduct = cart.find(p => p.id === product.id)
+    // if (hasProduct) {
+    //   const newCart = cart.map((p): any => {
+    //     if (p.id === product.id) {
+    //       return { ...p, amount: p.amount + product.id }
+    //     }
+    //     return p
+    //   })
 
-      setCart(newCart)
-    } else {
-      setCart([...cart, product])
-    }
-    localStorage.setItem(`${storageVersion}`, JSON.stringify(cart))
+    //   setCart(newCart)
+    // } else {
+    //   setCart([...cart, product])
+    // }
+    console.log('state', cart)
+    dispatch({ type: 'ADD_TO_CART', payload: { item: product } })
   }
 
   // const removeFromCart = product => {
