@@ -15,7 +15,7 @@ interface CartContextProviderProps {
 
 export const CartContext = createContext({} as CartContextType)
 
-export const storageVersion = '@cart:1.0.4'
+export const storageVersion = '@cart:1.0.5'
 export function CartProvider({ children }: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(
     cartReducer,
