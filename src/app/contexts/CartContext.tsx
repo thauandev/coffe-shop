@@ -44,7 +44,7 @@ export function CartProvider({ children }: CartContextProviderProps) {
   //   setCartTotal(total)
   // }, [cart])
 
-  const addToCart = (product: any) => {
+  const addToCart = (product: Cart) => {
     // const hasProduct = cart.find(p => p.id === product.id)
     // if (hasProduct) {
     //   const newCart = cart.map((p): any => {

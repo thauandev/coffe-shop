@@ -24,13 +24,22 @@ export const metadata: Metadata = {
   description: 'Coffe Delivery app',
 }
 
-export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
+export default function RootLayout({
+  children,
+  checkout,
+}: {
+  children: React.ReactNode
+  checkout: React.ReactNode
+}): JSX.Element {
   return (
     <html lang="en" className={(roboto.variable, baloo.variable)}>
       <body>
         <CartProvider>
-          <Header />
-          {children}
+          <div className="w-full mx-auto">
+            <Header />
+            {children}
+            {checkout}
+          </div>
         </CartProvider>
       </body>
     </html>

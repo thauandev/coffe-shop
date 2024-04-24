@@ -8,7 +8,7 @@ import { useContext } from 'react'
 const Header: React.FC = () => {
   const { totalItems } = useContext(CartContext)
   return (
-    <nav className="flex flex-row justify-between items-center px-6 py-4 gap-x-32">
+    <nav className="flex flex-row justify-between items-center py-4 gap-x-32">
       <div>
         <Image src="/logo.png" alt="Logo" width={84} height={40} />
       </div>
