@@ -11,6 +11,7 @@ interface CartContextType {
   totalValue: number
   deliveryTax: number
   addToCart: (product: Cart) => void
+  addToCartOnCheckout: (id: number) => void
 }
 
 interface CartState {
@@ -58,6 +59,13 @@ export function CartProvider({ children }: CartContextProviderProps) {
     dispatch({ type: ActionTypes.ADD_TO_CART, payload: { item: product } })
   }
 
+  const addToCartOnCheckout = (id: number) => {
+    dispatch({
+      type: ActionTypes.ADD_TO_CART_ON_CHECKOUT,
+      payload: { item: id },
+    })
+  }
+
   // const removeFromCart = product => {
   //   const newCart = cart.filter(p => p.idTicket !== product.idTicket)
   //   if (newCart.length === 0) {
@@ -85,6 +93,7 @@ export function CartProvider({ children }: CartContextProviderProps) {
         addToCart,
         totalValue,
         deliveryTax,
+        addToCartOnCheckout,
       }}
     >
       {children}

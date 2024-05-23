@@ -4,6 +4,7 @@ import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from './contexts/CartContext'
+import { Cart } from './reducers/cart/reducer'
 
 const Home: React.FC = () => {
   const [items, setItems] = useState([
@@ -62,7 +63,7 @@ const Home: React.FC = () => {
     setItems(newItems)
   }
 
-  function add(item: any) {
+  function add(item: Cart) {
     addToCart(item)
   }
 

@@ -44,7 +44,8 @@ const Checkout: React.FC = () => {
     },
   ])
 
-  const { cart, totalValue, deliveryTax } = useContext(CartContext)
+  const { cart, totalValue, deliveryTax, addToCartOnCheckout } =
+    useContext(CartContext)
 
   const {
     register,
@@ -64,6 +65,10 @@ const Checkout: React.FC = () => {
           : { ...item, isSelected: false }
       )
     )
+  }
+
+  const increment = (item: number) => {
+    addToCartOnCheckout(item)
   }
 
   console.log(cart)
@@ -212,16 +217,16 @@ const Checkout: React.FC = () => {
               <span>{formatNumber(item.price)}</span>
             </div>
           ))}
-          <div className="w-full flex-col align-center justify-evenly gap-5 py-6">
-            <div className="flex justify-between">
+          <div className="w-full flex-col align-center justify-evenly py-6">
+            <div className="flex justify-between mb-2">
               <p>Total de itens</p>
               <p>{formatNumber(totalValue)}</p>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-2">
               <p>Entrega</p>
               <p>{formatNumber(deliveryTax)}</p>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between text-xl">
               <p className="font-bold">Total</p>
               <p className="font-bold">
                 {formatNumber(totalValue + deliveryTax)}
