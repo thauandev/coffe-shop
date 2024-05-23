@@ -8,6 +8,8 @@ import { Cart, cartReducer } from '../reducers/cart/reducer'
 interface CartContextType {
   cart: Cart[]
   totalItems: number
+  totalValue: number
+  deliveryTax: number
   addToCart: (product: Cart) => void
 }
 
@@ -39,33 +41,20 @@ export function CartProvider({ children }: CartContextProviderProps) {
   )
 
   const { cart } = cartState
-  console.log(cart)
+
+  const totalValue = cart?.reduce(
+    (acc: number, cur: Cart) => acc + cur?.price * cur?.amount,
+    0
+  )
+
   const totalItems = cart?.reduce(
     (acc: number, cur: Cart) => acc + cur?.amount,
     0
   )
 
-  // const [cartTotal, setCartTotal] = us cart(total)
-
-  // useEffect(() => {
-  //   setCartTotal(total)
-  // }, [cart])
+  const deliveryTax = 3.5
 
   const addToCart = (product: Cart) => {
-    // const hasProduct = cart.find(p => p.id === product.id)
-    // if (hasProduct) {
-    //   const newCart = cart.map((p): any => {
-    //     if (p.id === product.id) {
-    //       return { ...p, amount: p.amount + product.id }
-    //     }
-    //     return p
-    //   })
-
-    //   setCart(newCart)
-    // } else {
-    //   setCart([...cart, product])
-    // }
-    console.log('state', cart)
     dispatch({ type: ActionTypes.ADD_TO_CART, payload: { item: product } })
   }
 
@@ -94,6 +83,8 @@ export function CartProvider({ children }: CartContextProviderProps) {
         cart,
         totalItems,
         addToCart,
+        totalValue,
+        deliveryTax,
       }}
     >
       {children}

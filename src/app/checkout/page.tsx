@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { useContext, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { CartContext } from '../contexts/CartContext'
+import { formatNumber } from '../utils/formatNumber'
 
 interface Fields {
   cep: string
@@ -43,7 +44,7 @@ const Checkout: React.FC = () => {
     },
   ])
 
-  const { cart, total } = useContext(CartContext)
+  const { cart, totalValue, deliveryTax } = useContext(CartContext)
 
   const {
     register,
@@ -208,21 +209,23 @@ const Checkout: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <span>R$ {item.price}</span>
+              <span>{formatNumber(item.price)}</span>
             </div>
           ))}
           <div className="w-full flex-col align-center justify-evenly gap-5 py-6">
             <div className="flex justify-between">
               <p>Total de itens</p>
-              <p>R$ {total}</p>
+              <p>{formatNumber(totalValue)}</p>
             </div>
             <div className="flex justify-between">
               <p>Entrega</p>
-              <p>R$ 9.90</p>
+              <p>{formatNumber(deliveryTax)}</p>
             </div>
             <div className="flex justify-between">
               <p className="font-bold">Total</p>
-              <p className="font-bold">R$ 9.90</p>
+              <p className="font-bold">
+                {formatNumber(totalValue + deliveryTax)}
+              </p>
             </div>
           </div>
         </div>
