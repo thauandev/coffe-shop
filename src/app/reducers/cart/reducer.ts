@@ -1,6 +1,6 @@
 import { storageVersion } from "@/app/contexts/CartContext";
 import { produce } from "immer";
-import { ActionTypes } from './actions';
+import { ActionTypes, CartAction } from './actions';
 
 export interface Cart {
   id: number,
@@ -13,13 +13,15 @@ export interface Cart {
 interface CartState {
   cart: Cart[]
 }
-export function cartReducer(state: CartState, action: any) {
+
+
+export function cartReducer(state: CartState, action: CartAction) {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
-      return produce(state, (draft: any) => {
-        const hasProduct = draft.cart.find((p: any) => p.id === action.payload.item.id)
+      return produce(state, (draft: CartState) => {
+        const hasProduct = draft.cart.find((p: Cart) => p.id === action.payload.item.id)
         if (hasProduct) {
-          const newCart = draft.cart.map((p: any) => {
+          const newCart = draft.cart.map((p: Cart) => {
             if (p.id === action.payload.item.id) {
               return { ...p, amount: p.amount + action.payload.item.amount }
             }

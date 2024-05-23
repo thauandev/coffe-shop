@@ -2,12 +2,17 @@
 
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, ReactNode, useReducer } from 'react'
+import { ActionTypes } from '../reducers/cart/actions'
 import { Cart, cartReducer } from '../reducers/cart/reducer'
 
 interface CartContextType {
   cart: Cart[]
   totalItems: number
   addToCart: (product: Cart) => void
+}
+
+interface CartState {
+  cart: Cart[]
 }
 interface CartContextProviderProps {
   children: ReactNode
@@ -22,7 +27,7 @@ export function CartProvider({ children }: CartContextProviderProps) {
     {
       cart: [],
     },
-    initialState => {
+    (initialState: CartState) => {
       const storageStateAsJSON = localStorage.getItem(`${storageVersion}`)
 
       if (storageStateAsJSON) {
@@ -34,9 +39,11 @@ export function CartProvider({ children }: CartContextProviderProps) {
   )
 
   const { cart } = cartState
-
-  // const total = cart.reduce((acc, cur) => acc + cur.value * cur.amount, 0)
-  const totalItems = cart?.reduce((acc, cur) => acc + cur?.amount, 0)
+  console.log(cart)
+  const totalItems = cart?.reduce(
+    (acc: number, cur: Cart) => acc + cur?.amount,
+    0
+  )
 
   // const [cartTotal, setCartTotal] = us cart(total)
 
@@ -59,7 +66,7 @@ export function CartProvider({ children }: CartContextProviderProps) {
     //   setCart([...cart, product])
     // }
     console.log('state', cart)
-    dispatch({ type: 'ADD_TO_CART', payload: { item: product } })
+    dispatch({ type: ActionTypes.ADD_TO_CART, payload: { item: product } })
   }
 
   // const removeFromCart = product => {

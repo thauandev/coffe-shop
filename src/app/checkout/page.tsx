@@ -8,6 +8,7 @@ import {
   Minus,
   Money,
   Plus,
+  Trash,
 } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { useContext, useState } from 'react'
@@ -42,7 +43,7 @@ const Checkout: React.FC = () => {
     },
   ])
 
-  const { cart } = useContext(CartContext)
+  const { cart, total } = useContext(CartContext)
 
   const {
     register,
@@ -164,7 +165,10 @@ const Checkout: React.FC = () => {
         <h1 className="font-display font-bold pb-5">Cafés selecionados</h1>
         <div className="w-full h-auto bg-gray-50 rounded-md flex flex-col justify-center items-center px-6">
           {cart.map(item => (
-            <div className=" w-full flex align-center justify-evenly gap-5 py-6   border-b-gray-100 border-b">
+            <div
+              className=" w-full flex align-center justify-evenly gap-5 py-6   border-b-gray-100 border-b"
+              key={item.id}
+            >
               <Image
                 alt="coffe"
                 src={item.image}
@@ -194,7 +198,12 @@ const Checkout: React.FC = () => {
                       <Minus size={13} color="#8047F8" />
                     </button>
                   </div>
-                  <div>
+                  <div
+                    className={
+                      'flex gap-1 items-center bg-gray-100 rounded px-2 cursor-pointer'
+                    }
+                  >
+                    <Trash size={16} color="#8047F8" />
                     <span>Remover</span>
                   </div>
                 </div>
@@ -202,6 +211,20 @@ const Checkout: React.FC = () => {
               <span>R$ {item.price}</span>
             </div>
           ))}
+          <div className="w-full flex-col align-center justify-evenly gap-5 py-6">
+            <div className="flex justify-between">
+              <p>Total de itens</p>
+              <p>R$ {total}</p>
+            </div>
+            <div className="flex justify-between">
+              <p>Entrega</p>
+              <p>R$ 9.90</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="font-bold">Total</p>
+              <p className="font-bold">R$ 9.90</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
