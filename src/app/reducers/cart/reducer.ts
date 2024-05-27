@@ -41,7 +41,7 @@ export function cartReducer(state: CartState, action: any) {
 
 
         const newCart = draft.cart.map((p: Cart) => {
-          if (p.id === action.payload.item) {
+          if (p.id === action.payload.id) {
             return { ...p, amount: p.amount + 1 }
           }
           return p
@@ -50,6 +50,29 @@ export function cartReducer(state: CartState, action: any) {
         draft.cart = newCart
         localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
 
+      })
+    }
+
+    case ActionTypes.REMOVE_AMOUNT_TO_CART: {
+
+      return produce(state, (draft: CartState) => {
+        const newCart = draft.cart.map((p: Cart) => {
+          if (p.id === action.payload.id) {
+            return { ...p, amount: p.amount - 1 > 1 ? p.amount - 1 : 1 }
+          }
+          return p
+        })
+
+        draft.cart = newCart
+        localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
+      })
+    }
+
+    case ActionTypes.REMOVE_ITEM_TO_CART: {
+      return produce(state, (draft: CartState) => {
+        const newCart = draft.cart.filter((p: Cart) => p.id !== action.payload.id)
+        draft.cart = newCart
+        localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
       })
     }
 

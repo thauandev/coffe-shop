@@ -4,10 +4,16 @@ import { CartContext } from '@/app/contexts/CartContext'
 import { ShoppingCart } from '@phosphor-icons/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const Header: React.FC = () => {
   const { totalItems } = useContext(CartContext)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <nav className="flex flex-row justify-between items-center py-4 gap-x-32">
       <div>
@@ -21,7 +27,7 @@ const Header: React.FC = () => {
               className="absolute rounded-full bg-yellow-300 -top-2 -right-1 
           flex w-4 h-4 justify-center items-center text-xs"
             >
-              <strong className="text-gray-50">{totalItems}</strong>
+              <strong className="text-gray-50">{isClient && totalItems}</strong>
             </div>
           </div>
         </div>

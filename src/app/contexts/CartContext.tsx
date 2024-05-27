@@ -12,6 +12,8 @@ interface CartContextType {
   deliveryTax: number
   addToCart: (product: Cart) => void
   addToCartOnCheckout: (id: number) => void
+  removeItemFromCart: (id: number) => void
+  removeAmountFromCart: (id: number) => void
 }
 
 interface CartState {
@@ -62,8 +64,16 @@ export function CartProvider({ children }: CartContextProviderProps) {
   const addToCartOnCheckout = (id: number) => {
     dispatch({
       type: ActionTypes.ADD_TO_CART_ON_CHECKOUT,
-      payload: { item: id },
+      payload: { id },
     })
+  }
+
+  const removeAmountFromCart = (id: number) => {
+    dispatch({ type: ActionTypes.REMOVE_AMOUNT_TO_CART, payload: { id } })
+  }
+
+  const removeItemFromCart = (id: number) => {
+    dispatch({ type: ActionTypes.REMOVE_ITEM_TO_CART, payload: { id } })
   }
 
   // const removeFromCart = product => {
@@ -94,6 +104,8 @@ export function CartProvider({ children }: CartContextProviderProps) {
         totalValue,
         deliveryTax,
         addToCartOnCheckout,
+        removeItemFromCart,
+        removeAmountFromCart,
       }}
     >
       {children}

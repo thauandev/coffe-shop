@@ -11,7 +11,8 @@ import {
   Trash,
 } from '@phosphor-icons/react'
 import Image from 'next/image'
-import { useContext, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useContext, useEffect, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { CartContext } from '../contexts/CartContext'
 import { formatNumber } from '../utils/formatNumber'
@@ -44,8 +45,25 @@ const Checkout: React.FC = () => {
     },
   ])
 
-  const { cart, totalValue, deliveryTax, addToCartOnCheckout } =
-    useContext(CartContext)
+  const {
+    cart,
+    totalValue,
+    totalItems,
+    deliveryTax,
+    addToCartOnCheckout,
+    removeItemFromCart,
+    removeAmountFromCart,
+  } = useContext(CartContext)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    console.log('teste', totalItems)
+    if (totalItems === 0) {
+      console.log('oi')
+      router.push('/')
+    }
+  }, [cart])
 
   const {
     register,
@@ -67,11 +85,18 @@ const Checkout: React.FC = () => {
     )
   }
 
-  const increment = (item: number) => {
-    addToCartOnCheckout(item)
+  const increment = (id: number) => {
+    addToCartOnCheckout(id)
   }
 
-  console.log(cart)
+  const decrement = (id: number) => {
+    removeAmountFromCart(id)
+  }
+
+  const handleRemove = (id: number) => {
+    removeItemFromCart(id)
+  }
+
   return (
     <div
       className="container mx-auto w-full pt-16 flex"
@@ -204,14 +229,16 @@ const Checkout: React.FC = () => {
                       <Minus size={13} color="#8047F8" />
                     </button>
                   </div>
-                  <div
+                  <button
+                    type="button"
+                    onClick={() => handleRemove(item.id)}
                     className={
                       'flex gap-1 items-center bg-gray-100 rounded px-2 cursor-pointer'
                     }
                   >
                     <Trash size={16} color="#8047F8" />
                     <span>Remover</span>
-                  </div>
+                  </button>
                 </div>
               </div>
               <span>{formatNumber(item.price)}</span>
@@ -232,6 +259,10 @@ const Checkout: React.FC = () => {
                 {formatNumber(totalValue + deliveryTax)}
               </p>
             </div>
+
+            <button className=" font-bold text-gray-50 w-full h-14 mt-5 bg-yellow-200 rounded-md">
+              Confirme o seu pedido
+            </button>
           </div>
         </div>
       </div>
