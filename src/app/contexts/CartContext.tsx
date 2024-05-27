@@ -31,12 +31,12 @@ export function CartProvider({ children }: CartContextProviderProps) {
       cart: [],
     },
     (initialState: CartState) => {
-      const storageStateAsJSON = localStorage.getItem(`${storageVersion}`)
-
-      if (storageStateAsJSON) {
-        return JSON?.parse(storageStateAsJSON)
+      if (typeof window !== 'undefined') {
+        const storage = localStorage.getItem(`${storageVersion}`)
+        if (storage) {
+          return JSON.parse(storage)
+        }
       }
-
       return initialState
     }
   )

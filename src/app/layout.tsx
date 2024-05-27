@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { Baloo_2, Roboto_Condensed } from 'next/font/google'
-import Header from './components/Header'
 import { CartProvider } from './contexts/CartContext'
 import './globals.css'
 
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   description: 'Coffe Delivery app',
 }
 
+const HeaderNoSSR = dynamic(() => import('./components/Header'), { ssr: false })
 export default function RootLayout({
   children,
   checkout,
@@ -36,7 +37,7 @@ export default function RootLayout({
       <body>
         <CartProvider>
           <div className="w-full mx-auto">
-            <Header />
+            <HeaderNoSSR />
             {children}
             {checkout}
           </div>
