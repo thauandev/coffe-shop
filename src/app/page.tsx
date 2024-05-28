@@ -70,7 +70,7 @@ const Home: React.FC = () => {
   return (
     <div className="container mx-auto">
       <main className=" flex w-full pt-16 max-[720px]:flex-col">
-        <div className="w-10/12  max-[720px]:w-full max-[720px]:mx-4">
+        <div className="w-10/12  max-[720px]:w-full max-[1024px]:mx-4">
           <div className="w-8/12 pb-10 max-[720px]:w-full max-[720px]:pr-4">
             <p className="font-display font-extrabold text-4xl pb-3">
               Encontre o café perfeito para qualquer hora do dia
@@ -80,26 +80,26 @@ const Home: React.FC = () => {
               hora
             </p>
           </div>
-          <div className="grid grid-cols-2 font-regular text-xs text-gray-300 gap-5 w-8/12 max-[720px]:w-full">
-            <div className="flex gap-2 items-center ">
+          <div className="grid grid-cols-2 font-regular text-xs text-gray-300  w-8/12 max-[720px]:w-11/12">
+            <div className="flex gap-2 items-center mb-4">
               <div className=" rounded-full w-7 h-7 flex items-center justify-center bg-yellow-300 ">
                 <ShoppingCart color="white" size={15} weight="fill" />
               </div>
               <span className=" ">Compra simples e segura</span>
             </div>
-            <div className="flex gap-2 items-center ">
+            <div className="flex gap-2 items-center mb-4">
+              <div className="rounded-full w-7 h-7 flex items-center justify-center bg-yellow-300">
+                <ShoppingCart color="white" size={15} weight="fill" />
+              </div>
+              <span className=" ">Compra simples e segura</span>
+            </div>
+            <div className="flex gap-2 items-center mb-4">
               <div className=" rounded-full w-7 h-7 flex items-center justify-center bg-yellow-300">
                 <ShoppingCart color="white" size={15} weight="fill" />
               </div>
               <span className=" ">Compra simples e segura</span>
             </div>
-            <div className="flex gap-2 items-center ">
-              <div className=" rounded-full w-7 h-7 flex items-center justify-center bg-yellow-300">
-                <ShoppingCart color="white" size={15} weight="fill" />
-              </div>
-              <span className=" ">Compra simples e segura</span>
-            </div>
-            <div className="flex gap-2 items-center ">
+            <div className="flex gap-2 items-center mb-4">
               <div className=" rounded-full w-7 h-7 flex items-center justify-center bg-yellow-300">
                 <ShoppingCart color="white" size={15} weight="fill" />
               </div>
@@ -113,14 +113,14 @@ const Home: React.FC = () => {
           </div>
         </div>
       </main>
-      <section className="w-full h-full max-[720px]:mx-4">
+      <section className="w-full h-full max-[1024px]:mx-4">
         <h2 className="font-display font-bold text-2xl pt-20 mb-20">
           Nossos cafés
         </h2>
         <div className="flex gap-5 mb-20 max-[720px]:flex-col max-[720px]:items-center max-[720px]:gap-20">
           {items.map(item => (
             <div
-              className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 "
+              className=" relative bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl w-64 h-60 max-[1024px]:w-48"
               key={item.id}
             >
               <div className="absolute inset-0 flex justify-center -top-10 h-7 ">
