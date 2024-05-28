@@ -58,9 +58,7 @@ const Checkout: React.FC = () => {
   const router = useRouter()
 
   useEffect(() => {
-    console.log('teste', totalItems)
     if (totalItems === 0) {
-      console.log('oi')
       router.push('/')
     }
   }, [cart])

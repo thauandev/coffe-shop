@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <nav className="flex flex-row justify-between items-center py-4 gap-x-32">
+    <nav className="flex flex-row justify-between items-center py-4 gap-x-32 max-[720px]:mx1 max-[720px]:w-full max-[720px]:px-4">
       <div>
         <Image src="/logo.png" alt="Logo" width={84} height={40} />
       </div>
