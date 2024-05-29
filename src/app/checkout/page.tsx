@@ -97,13 +97,13 @@ const Checkout: React.FC = () => {
 
   return (
     <div
-      className="container mx-auto w-full pt-16 flex"
+      className="container mx-auto w-full pt-16 flex max-[1024px]:flex-col max-[1024px]:px-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="w-7/12 ">
+      <div className="w-7/12 max-[1024px]:w-full">
         <h1 className="font-display font-bold pb-5">Complete seu pedido</h1>
         <div className="w-full h-auto bg-gray-50 rounded-md">
-          <div className="flex pl-10 pt-10 pb-10 gap-2">
+          <div className="flex pl-10 pt-10 pb-10 gap-2 max-[1024px]:px-4">
             <MapPinLine size={22} color="#DBAC2C" />
             <div className="gap-2">
               <p>Endereço de Entrega</p>
@@ -114,18 +114,18 @@ const Checkout: React.FC = () => {
           </div>
           <div className="px-10 pb-10 gap-2 flex flex-col">
             <input
-              className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border"
+              className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border max-[1024px]:w-full"
               placeholder="CEP"
               {...(register('cep'), { required: true })}
             />
             <input
-              className="bg-gray-150 w-full h-10 pl-2 rounded-sm border-gray-100 border"
+              className="bg-gray-150 w-full h-10 pl-2 rounded-sm border-gray-100 border max-[1024px]:w-full"
               placeholder="Rua"
               {...(register('street'), { required: true })}
             />
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-[1024px]:flex-col">
               <input
-                className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border"
+                className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border max-[1024px]:w-full"
                 placeholder="Número"
                 {...(register('number'), { required: true })}
               />
@@ -136,14 +136,14 @@ const Checkout: React.FC = () => {
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-[1024px]:flex-col">
               <input
-                className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border"
+                className="bg-gray-150 w-52 h-10 pl-2 rounded-sm border-gray-100 border max-[1024px]:w-full"
                 placeholder="Bairro"
                 {...(register('neighborhood'), { required: true })}
               />
               <input
-                className="bg-gray-150 w-80 h-10 pl-2 rounded-sm border-gray-100 border"
+                className="bg-gray-150 w-80 h-10 pl-2 rounded-sm border-gray-100 border max-[1024px]:w-full"
                 placeholder="Cidade"
                 {...(register('city'), { required: true })}
               />
@@ -155,8 +155,8 @@ const Checkout: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-3 w-full h-52 bg-gray-50 rounded-md">
-          <div className="flex pl-10 pt-10 pb-10 gap-2">
+        <div className="mt-3 w-full h-52 bg-gray-50 rounded-md max-[1024px]:h-auto max-[1024px]:pb-10 max-[1024px]:mb-10">
+          <div className="flex pl-10 pt-10 pb-10 gap-2 max-[1024px]:px-4">
             <CurrencyDollar size={22} color="#8047F8" />
             <div className="gap-2">
               <p>Pagamento</p>
@@ -165,7 +165,7 @@ const Checkout: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-start gap-5 pl-10">
+          <div className="flex items-center justify-start gap-5 pl-10 max-[1024px]:flex-col max-[1024px]:pl-0">
             {paymentType.map(payment => (
               <button
                 key={payment.id}
@@ -190,12 +190,12 @@ const Checkout: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="w-5/12 ml-5 ">
+      <div className="w-5/12 ml-5 max-[1024px]:w-full max-[1024px]:ml-0">
         <h1 className="font-display font-bold pb-5">Cafés selecionados</h1>
-        <div className="w-full h-auto bg-gray-50 rounded-md flex flex-col justify-center items-center px-6">
+        <div className="w-full h-auto bg-gray-50 rounded-md flex flex-col justify-center items-center px-6 max-[720px]:px-6">
           {cart.map(item => (
             <div
-              className=" w-full flex align-center justify-evenly gap-5 py-6   border-b-gray-100 border-b"
+              className=" w-full flex align-center justify-evenly gap-5 py-6 border-b-gray-100 border-b max-[720px]:gap-1"
               key={item.id}
             >
               <Image
