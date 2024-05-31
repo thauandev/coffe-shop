@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, ReactNode, useReducer } from 'react'
 import { ActionTypes } from '../reducers/cart/actions'
-import { Cart, cartReducer } from '../reducers/cart/reducer'
+import { Cart, cartReducer, CartState } from '../reducers/cart/reducer'
 
 interface CartContextType {
   cart: Cart[]
@@ -16,16 +16,13 @@ interface CartContextType {
   removeAmountFromCart: (id: number) => void
 }
 
-interface CartState {
-  cart: Cart[]
-}
 interface CartContextProviderProps {
   children: ReactNode
 }
 
 export const CartContext = createContext({} as CartContextType)
 
-export const storageVersion = '@cart:1.0.5'
+export const storageVersion = '@cart:1.0.6'
 export function CartProvider({ children }: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(
     cartReducer,

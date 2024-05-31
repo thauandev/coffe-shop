@@ -19,6 +19,7 @@ import { formatNumber } from '../utils/formatNumber'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { FormContext } from '../contexts/FormContext'
 
 interface Fields {
   cep: string
@@ -73,7 +74,7 @@ const Checkout: React.FC = () => {
     cep: zod.string().min(8, 'CEP obrigatório'),
     street: zod.string().min(1, 'Endereço obrigatório'),
     number: zod
-      .number({ invalid_type_error: 'Digite somente números' })
+      .string()
       .max(99999, 'Número inválido')
       .min(1, 'Número obrigatório'),
     complement: zod.string().optional(),
@@ -99,10 +100,25 @@ const Checkout: React.FC = () => {
   } = useForm({
     resolver: zodResolver(schema),
   })
-  console.log(errors)
+
+  const { addForm } = useContext(FormContext)
   const onSubmit: SubmitHandler<FieldValues> = (data: Fields | {}) => {
+    console.log('DATAAAAA', data)
+
     const verifiedPaymentType = paymentType.every(item => !item.isSelected)
     setErrorPaymentTypeSelectedOnSubmit(verifiedPaymentType)
+
+    const type = paymentType.find(item => item.isSelected)
+
+    if (type) {
+      console.log(type.name)
+      addForm({
+        ...data,
+        paymentType: type.name,
+      })
+
+      router.push('/success')
+    }
   }
 
   const handlePaymentType = (id: number): void => {

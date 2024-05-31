@@ -10,7 +10,7 @@ export interface Cart {
   amount: number,
   image: string,
 }
-interface CartState {
+export interface CartState {
   cart: Cart[]
 }
 
