@@ -34,6 +34,7 @@ export default function RootLayout({
 }): JSX.Element {
   const HeaderNoSSR = dynamic(() => import('./components/Header'), {
     ssr: false,
+    loader: () => import('./components/Header'),
   })
   return (
     <html lang="en" className={(roboto.variable, baloo.variable)}>
