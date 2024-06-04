@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { Baloo_2, Roboto_Condensed } from 'next/font/google'
+import Header from './components/Header'
 import { CartProvider } from './contexts/CartContext'
 import { FormProvider } from './contexts/FormContext'
 import './globals.css'
@@ -32,17 +32,13 @@ export default function RootLayout({
   children: React.ReactNode
   checkout: React.ReactNode
 }): JSX.Element {
-  const HeaderNoSSR = dynamic(() => import('./components/Header'), {
-    ssr: false,
-    loader: () => import('./components/Header'),
-  })
   return (
     <html lang="en" className={(roboto.variable, baloo.variable)}>
       <body>
         <FormProvider>
           <CartProvider>
             <div className="w-full mx-auto">
-              <HeaderNoSSR />
+              <Header />
               {children}
               {checkout}
             </div>

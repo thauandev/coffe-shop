@@ -27,7 +27,7 @@ export function cartReducer(state: CartState, action: any) {
             }
             return p
           })
-
+          console.log(newCart)
           draft.cart = newCart
           localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
           return
@@ -72,6 +72,13 @@ export function cartReducer(state: CartState, action: any) {
       return produce(state, (draft: CartState) => {
         const newCart = draft.cart.filter((p: Cart) => p.id !== action.payload.id)
         draft.cart = newCart
+        localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
+      })
+    }
+
+    case ActionTypes.ADD_TO_CART_INITIAL_STATE: {
+      return produce(state, (draft: CartState) => {
+        draft.cart = action.payload.item
         localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
       })
     }

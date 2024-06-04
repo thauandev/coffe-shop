@@ -1,9 +1,9 @@
 'use client'
 
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { ActionTypes } from '../reducers/cart/actions'
-import { Cart, cartReducer, CartState } from '../reducers/cart/reducer'
+import { Cart, cartReducer } from '../reducers/cart/reducer'
 
 interface CartContextType {
   cart: Cart[]
@@ -22,25 +22,30 @@ interface CartContextProviderProps {
 
 export const CartContext = createContext({} as CartContextType)
 
-export const storageVersion = '@cart:1.0.6'
+export const storageVersion = '@cart:1.0.26'
 export function CartProvider({ children }: CartContextProviderProps) {
-  const [cartState, dispatch] = useReducer(
-    cartReducer,
-    {
-      cart: [],
-    },
-    (initialState: CartState) => {
-      if (typeof window !== 'undefined') {
-        const storage = localStorage.getItem(`${storageVersion}`)
-        if (storage) {
-          return JSON.parse(storage)
-        }
-      }
-      return initialState
-    }
-  )
+  const [cartState, dispatch] = useReducer(cartReducer, {
+    cart: [],
+  })
 
   const { cart } = cartState
+
+  useEffect(() => {
+    console.log('cart', cart)
+    const storage = localStorage.getItem(`${storageVersion}`)
+    if (storage) {
+      const parse = JSON.parse(storage)
+
+      console.log('cart', parse.cart)
+
+      dispatch({
+        type: ActionTypes.ADD_TO_CART_INITIAL_STATE,
+        payload: {
+          item: parse.cart,
+        },
+      })
+    }
+  }, [])
 
   const totalValue = cart?.reduce(
     (acc: number, cur: Cart) => acc + cur?.price * cur?.amount,
