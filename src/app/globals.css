@@ -7,7 +7,6 @@
   --base-title: #272221;
   --purple: #8047f8;
   --yellowdark: #c47f17;
- 
 }
 
 body {
@@ -15,4 +14,32 @@ body {
   background: var(--background);
   max-width: 1080px;
   margin: 0 auto;
+}
+
+@layer utilities {
+  .border-gradient {
+    position: relative;
+    z-index: 0;
+  }
+
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: linear-gradient(to right, #feb47b, #8047f8);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+  }
 }

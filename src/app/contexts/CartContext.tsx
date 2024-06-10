@@ -31,12 +31,9 @@ export function CartProvider({ children }: CartContextProviderProps) {
   const { cart } = cartState
 
   useEffect(() => {
-    console.log('cart', cart)
     const storage = localStorage.getItem(`${storageVersion}`)
     if (storage) {
       const parse = JSON.parse(storage)
-
-      console.log('cart', parse.cart)
 
       dispatch({
         type: ActionTypes.ADD_TO_CART_INITIAL_STATE,

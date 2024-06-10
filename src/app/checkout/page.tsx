@@ -13,7 +13,7 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { CartContext } from '../contexts/CartContext'
 import { formatNumber } from '../utils/formatNumber'
 
@@ -102,7 +102,7 @@ const Checkout: React.FC = () => {
   })
 
   const { addForm } = useContext(FormContext)
-  const onSubmit: SubmitHandler<FieldValues> = (data: Fields | {}) => {
+  const onSubmit: SubmitHandler<any> = (data: Fields) => {
     console.log('DATAAAAA', data)
 
     const verifiedPaymentType = paymentType.every(item => !item.isSelected)
@@ -112,8 +112,23 @@ const Checkout: React.FC = () => {
 
     if (type) {
       console.log(type.name)
+      const {
+        street,
+        number,
+        complement,
+        neighborhood,
+        city,
+        state,
+        cep,
+      }: Fields = data
       addForm({
-        ...data,
+        street,
+        number,
+        complement,
+        neighborhood,
+        city,
+        state,
+        cep,
         paymentType: type.name,
       })
 
@@ -258,7 +273,7 @@ const Checkout: React.FC = () => {
           </div>
           <div className="w-5/12 ml-5 max-[1024px]:w-full max-[1024px]:ml-0">
             <h1 className="font-display font-bold pb-5">Cafés selecionados</h1>
-            <div className="w-full h-auto bg-gray-50 rounded-md flex flex-col justify-center items-center px-6 max-[720px]:px-6">
+            <div className="w-full h-auto bg-gray-50 rounded-sm rounded-bl-xl rounded-tr-xl flex flex-col justify-center items-center px-6 max-[720px]:px-6">
               {cart.map(item => (
                 <div
                   className=" w-full flex align-center justify-evenly gap-5 py-6 border-b-gray-100 border-b max-[720px]:gap-1"
