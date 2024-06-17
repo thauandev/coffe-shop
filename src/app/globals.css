@@ -31,7 +31,7 @@ body {
     bottom: 0;
     border: 1px solid transparent;
     border-radius: inherit;
-    background: linear-gradient(to right, #feb47b, #8047f8);
+    background: linear-gradient(to left top, #feb47b, #8047f8);
     -webkit-mask:
       linear-gradient(#fff 0 0) padding-box,
       linear-gradient(#fff 0 0);
