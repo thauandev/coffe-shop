@@ -7,6 +7,7 @@ export enum ActionTypes {
   REMOVE_AMOUNT_TO_CART = 'REMOVE_AMOUNT_TO_CART',
   REMOVE_ITEM_TO_CART = 'REMOVE_ITEM_TO_CART',
   ADD_TO_CART_INITIAL_STATE = 'ADD_TO_CART_INITIAL_STATE',
+  EMPTY_CART = 'EMPTY_CART',
 }
 export function addNewItemAction(item: Cart) {
   return {
@@ -56,6 +57,15 @@ export function addToCartInitialState(item: Cart) {
       item,
     },
   }
+
+
 }
+
+export function emptyCart() {
+  return {
+    type: ActionTypes.EMPTY_CART,
+  }
+}
+
 
 

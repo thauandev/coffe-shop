@@ -8,7 +8,6 @@ import { FormContext } from '../contexts/FormContext'
 const success: React.FC = () => {
   const { form } = useContext(FormContext)
 
-  console.log(form)
   return (
     <div className="flex pt-20 max-[720px]:flex-col">
       <div className="w-6/12 h-auto flex-col  justify-center items-center px-6 max-[1024px]:px-6 max-[720px]:w-full">

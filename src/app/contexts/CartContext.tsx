@@ -14,6 +14,7 @@ interface CartContextType {
   addToCartOnCheckout: (id: number) => void
   removeItemFromCart: (id: number) => void
   removeAmountFromCart: (id: number) => void
+  emptyCart: () => void
 }
 
 interface CartContextProviderProps {
@@ -75,6 +76,10 @@ export function CartProvider({ children }: CartContextProviderProps) {
     dispatch({ type: ActionTypes.REMOVE_ITEM_TO_CART, payload: { id } })
   }
 
+  const emptyCart = () => {
+    dispatch({ type: ActionTypes.EMPTY_CART })
+  }
+
   // const removeFromCart = product => {
   //   const newCart = cart.filter(p => p.idTicket !== product.idTicket)
   //   if (newCart.length === 0) {
@@ -105,6 +110,7 @@ export function CartProvider({ children }: CartContextProviderProps) {
         addToCartOnCheckout,
         removeItemFromCart,
         removeAmountFromCart,
+        emptyCart,
       }}
     >
       {children}

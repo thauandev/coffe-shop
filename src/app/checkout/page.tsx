@@ -68,6 +68,7 @@ const Checkout: React.FC = () => {
     addToCartOnCheckout,
     removeItemFromCart,
     removeAmountFromCart,
+    emptyCart,
   } = useContext(CartContext)
 
   const schema = zod.object({
@@ -86,8 +87,10 @@ const Checkout: React.FC = () => {
 
   const router = useRouter()
 
+  const [isFinished, setIsFinished] = useState(false)
+
   useEffect(() => {
-    if (totalItems === 0) {
+    if (totalItems === 0 && !isFinished) {
       router.push('/')
     }
   }, [cart])
@@ -103,8 +106,6 @@ const Checkout: React.FC = () => {
 
   const { addForm } = useContext(FormContext)
   const onSubmit: SubmitHandler<any> = (data: Fields) => {
-    console.log('DATAAAAA', data)
-
     const verifiedPaymentType = paymentType.every(item => !item.isSelected)
     setErrorPaymentTypeSelectedOnSubmit(verifiedPaymentType)
 
@@ -131,6 +132,10 @@ const Checkout: React.FC = () => {
         cep,
         paymentType: type.name,
       })
+
+      setIsFinished(true)
+
+      emptyCart()
 
       router.push('/success')
     }

@@ -83,6 +83,13 @@ export function cartReducer(state: CartState, action: any) {
       })
     }
 
+    case ActionTypes.EMPTY_CART: {
+      return produce(state, (draft: CartState) => {
+        draft.cart = []
+        localStorage.setItem(`${storageVersion}`, JSON.stringify(draft))
+      })
+    }
+
     default:
       return state
 
