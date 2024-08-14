@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coffee Shop Cart
 
-## Getting Started
+This project was developed as a challenge to practice creating and managing a shopping cart using `useReducer` and `useContext` in React. The main objective is to simulate the experience of adding, removing, and updating items in a shopping cart for a fictional coffee shop.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- **Product Listing:** Display a list of coffees available for purchase.
+- **Add Items to Cart:** Allows users to add a specific quantity of a coffee to the cart.
+- **Increase or Decrease Item Quantity:** Users can increase or decrease the quantity of each item directly in the cart.
+- **Address Form:** A form where users can fill in their delivery address details.
+- **Total Items in Header:** The header of the application displays the total number of items in the cart.
+- **Cart Total Value:** The total value of the items in the cart is automatically calculated by multiplying the quantity of each item by its unit price.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Concepts Practiced
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+By developing this application, you will revisit the following important React concepts:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **State Management:** Managing state with `useState` and `useReducer`.
+- **ContextAPI:** Sharing states between components using `useContext`.
+- **LocalStorage:** Persisting cart data to keep items saved even after reloading the page.
+- **State Immutability:** Ensuring that the state is not mutated directly but always replaced with a new version.
+- **Lists and Keys in ReactJS:** Efficiently rendering lists of products and items in the cart.
+- **Props:** Passing data between components through props.
+- **Componentization:** Dividing the interface into reusable components.
 
-## Learn More
+## How to Start the Project
 
-To learn more about Next.js, take a look at the following resources:
+To start the project, follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone this repository to your local machine.
+2. Navigate to the project directory in the terminal.
+3. Install the necessary dependencies with the command:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+4. Run the development server with the command:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run dev
+   ```
+   
